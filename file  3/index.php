@@ -31,7 +31,6 @@ echo "<br>";
 // task  3
 function islowercase($string)
 {
-    // Check if all characters in the string are lowercase
     return ctype_lower($string);
 }
 
@@ -82,14 +81,11 @@ if (isArmstrong($number)) {
 echo "<br>";
 echo "<br>";
 function isPalindrome($string) {
-    // Remove all non-alphanumeric characters and convert the string to lowercase
     $cleanedString = strtolower(preg_replace("/[^A-Za-z0-9]/", '', $string));
     
-    // Check if the cleaned string is equal to its reverse
     return $cleanedString == strrev($cleanedString);
 }
 
-// Example usage
 $string = "A man, a plan, a canal, Panama";
 if (isPalindrome($string)) {
     echo "\"$string\" is a palindrome.";
