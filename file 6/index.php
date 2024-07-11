@@ -30,36 +30,30 @@
 //     }
 
 // }
-// Function to create a cookie
-function createCookie($cookie_name, $cookie_value, $expiry_time = 0, $cookie_path = "/", $domain = "", $secure = true, $httponly = true) {
+function createCookie($cookie_name, $cookie_value, $expiry_time = 0, $cookie_path = "", $domain = "", $secure = true, $httponly = true) {
     setcookie($cookie_name, $cookie_value, $expiry_time, $cookie_path, $domain, $secure, $httponly);
 }
 
-// Function to retrieve all cookies
 function getAllCookies() {
     foreach ($_COOKIE as $key => $value) {
         echo "Cookie name: " . htmlspecialchars($key) . " - Cookie value: " . htmlspecialchars($value) . "<br>";
     }
 }
 
-// Function to delete a cookie
 function deleteCookie($cookie_name, $cookie_path = "/", $domain = "") {
     setcookie($cookie_name, "", time() - 86400, $cookie_path, $domain);
 }
 
-// Create a cookie
-setcookie("user", "John Doe", time() + 3600); // Cookie will expire in 1 hour
-setcookie("hi1", "John asc", time() + 3600); // Cookie will expire in 1 hour
-setcookie("hi22", "ascnas Doe", time() + 3600); // Cookie will expire in 1 hour
+setcookie("user", "John Doe", time() + 3600,"hi"); 
+setcookie("hi1", "John asc", time() + 3600); 
+setcookie("hi22", "ascnas Doe", time() + 3600); 
 
-// Retrieve all cookies
 getAllCookies();
 echo "<br>";
 echo "<br>";
 echo "<br>";
 
-// Delete the cookie
-deleteCookie("user");
+deleteCookie("user" ,time()-86400);
 echo "<br>";
 echo "<br>";
 echo "<br>";
@@ -177,7 +171,7 @@ echo "<br>";
             file_put_contents($counterFile, '0');
         }
 
-        $counter = (int)file_get_contents($counterFile);
+        $counter = file_get_contents($counterFile);
 
         if (!isset($_SESSION['visited'])) {
             $_SESSION['visited'] = true;
