@@ -1,6 +1,5 @@
 <?php
 // task1 
-
 function primeCheck($num)
 {
     if ($num == 1)
