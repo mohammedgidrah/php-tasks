@@ -30,6 +30,42 @@
 //     }
 
 // }
+// Function to create a cookie
+function createCookie($cookie_name, $cookie_value, $expiry_time = 0, $cookie_path = "/", $domain = "", $secure = true, $httponly = true) {
+    setcookie($cookie_name, $cookie_value, $expiry_time, $cookie_path, $domain, $secure, $httponly);
+}
+
+// Function to retrieve all cookies
+function getAllCookies() {
+    foreach ($_COOKIE as $key => $value) {
+        echo "Cookie name: " . htmlspecialchars($key) . " - Cookie value: " . htmlspecialchars($value) . "<br>";
+    }
+}
+
+// Function to delete a cookie
+function deleteCookie($cookie_name, $cookie_path = "/", $domain = "") {
+    setcookie($cookie_name, "", time() - 86400, $cookie_path, $domain);
+}
+
+// Create a cookie
+setcookie("user", "John Doe", time() + 3600); // Cookie will expire in 1 hour
+setcookie("hi1", "John asc", time() + 3600); // Cookie will expire in 1 hour
+setcookie("hi22", "ascnas Doe", time() + 3600); // Cookie will expire in 1 hour
+
+// Retrieve all cookies
+getAllCookies();
+echo "<br>";
+echo "<br>";
+echo "<br>";
+
+// Delete the cookie
+deleteCookie("user");
+echo "<br>";
+echo "<br>";
+echo "<br>";
+
+// Retrieve all cookies again to confirm deletion
+
 
 
 
@@ -100,7 +136,7 @@
 
         session_start();
 
-
+        // task 4
         if (!isset($_SESSION['tasks'])) {
             $_SESSION['tasks'] = [];
         }
@@ -115,16 +151,15 @@
             array_splice($_SESSION['tasks'], $index, 1);
         }
 
-        // task 5
-    echo "the name of the script file is :". $_SERVER["SCRIPT_NAME"];
         foreach ($_SESSION['tasks'] as $index => $task) {
             echo "<li>$task <form method='post' >
             <input type='hidden' name='index' value='$index'>
             <input type='submit' name='delete' value='Delete'>
             </form></li>";
         }
+        // task 5
+        echo "the name of the script file is :" . $_SERVER["SCRIPT_NAME"];
         // task 6
-        $date = date('Y-m-d H:i:s');
         echo "<p>Page requested at: " . date('Y-m-d H:i:s') . "</p>";
 
         // task 7
@@ -138,15 +173,12 @@
 
         $counterFile = 'counter.txt';
 
-        // Initialize the counter file if it doesn't exist
         if (!file_exists($counterFile)) {
             file_put_contents($counterFile, '0');
         }
 
-        // Read the current count
         $counter = (int)file_get_contents($counterFile);
 
-        // Increment the counter if this is a new session
         if (!isset($_SESSION['visited'])) {
             $_SESSION['visited'] = true;
             $counter++;
@@ -154,6 +186,13 @@
         }
 
         echo "<p>Number of visitors: $counter</p>";
+
+
+        // task 9
+
+        
+
+
 
         ?>
 
